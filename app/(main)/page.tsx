@@ -16,6 +16,10 @@ import { FormEvent, useEffect, useState } from "react";
 import { toast, Toaster } from "sonner";
 import LoadingDots from "../../components/loading-dots";
 import { shareApp } from "./actions";
+import { uploadFileToGithub } from "../github/connect"
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 export default function Home() {
   let [status, setStatus] = useState<
@@ -89,6 +93,13 @@ export default function Home() {
     setMessages([{ role: "user", content: prompt }]);
     setInitialAppConfig({ model, shadcn });
     setStatus("created");
+
+    const githubToken = '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';
+//    const githubToken = process.env.GITHUB_TOKEN!;
+    const githubUser = 'yongwhan'; 
+    const repoName = 'ember';
+    const githubFilePath = 'testing777.txt';
+    uploadFileToGithub(githubToken, githubUser, repoName, githubFilePath, prompt)
   }
 
   async function updateApp(e: FormEvent<HTMLFormElement>) {
@@ -127,6 +138,13 @@ export default function Home() {
 
     setMessages((m) => [...m, codeMessage, modificationMessage]);
     setStatus("updated");
+
+    const githubToken = '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';
+//    const githubToken = process.env.GITHUB_TOKEN!;
+    const githubUser = 'yongwhan'; 
+    const repoName = 'ember';
+    const githubFilePath = 'testing777.txt';
+    uploadFileToGithub(githubToken, githubUser, repoName, githubFilePath, prompt)
   }
 
   useEffect(() => {
@@ -183,6 +201,8 @@ export default function Home() {
 
             <div className="mt-6 flex flex-col justify-center gap-4 sm:flex-row sm:items-center sm:gap-8">
               <div>Import Git Repository</div>
+
+              <div>Push to Git Repository</div>
 
               <div>Clone a Template</div>
             </div>
