@@ -22,13 +22,14 @@ passport.deserializeUser((obj: any, done) => {
 
 // Google Strategy
 passport.use(new GoogleStrategy({
-    clientID: 'YOUR_GOOGLE_CLIENT_ID',
-    clientSecret: 'YOUR_GOOGLE_CLIENT_SECRET',
+    clientID: '1038368567685-8ge12v2ifgilme5ue8g65k3th6ih0dji.apps.googleusercontent.com',
+    clientSecret: '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',
     callbackURL: '/auth/google/callback'
 }, (accessToken, refreshToken, profile, done) => {
     return done(null, profile);
 }));
 
+/*
 // Facebook Strategy
 passport.use(new FacebookStrategy({
     clientID: 'YOUR_FACEBOOK_APP_ID',
@@ -38,6 +39,7 @@ passport.use(new FacebookStrategy({
 }, (accessToken, refreshToken, profile, done) => {
     return done(null, profile);
 }));
+*/
 
 // Routes
 app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
@@ -47,12 +49,14 @@ app.get('/auth/google/callback', passport.authenticate('google', { failureRedire
         res.redirect('/profile');
     });
 
+    /*
 app.get('/auth/facebook', passport.authenticate('facebook', { scope: ['email'] }));
 
 app.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/' }),
     (req, res) => {
         res.redirect('/profile');
     });
+*/
 
 app.get('/profile', (req, res) => {
     res.send(req.user ? JSON.stringify(req.user) : 'You are not logged in');

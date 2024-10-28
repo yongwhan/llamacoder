@@ -57,7 +57,7 @@
     "prettier-plugin-tailwindcss": "^0.6.5",
     "prisma": "^5.18.0",
     "tailwindcss": "^3.4.1",
-    "tsx": "^4.19.1",
+    "tsx": "^4.19.2",
     "typescript": "^5.6.3"
   },
   "description": "<a href=\"https://www.llamacoder.io\">   <img alt=\"Llama Coder\" src=\"./public/og-image.png\">   <h1 align=\"center\">Llama Coder</h1> </a>",
